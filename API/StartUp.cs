@@ -11,6 +11,10 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Persistence;
 using Microsoft.EntityFrameworkCore;
+using MediatR;
+using Application.Activities;
+using AutoMapper;
+using API.Extensions;
 // using API.Extensions;
 
 namespace API
@@ -28,13 +32,7 @@ namespace API
         {
 
             services.AddControllers();
-            services.AddDbContext<DataContext>(opt =>
-            {
-                opt.UseSqlite(_config.GetConnectionString("DefaultConnection"));
-            });
-            services.AddEndpointsApiExplorer();
-            services.AddSwaggerGen();
-            
+            services.AddApplicationServices(_config);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
