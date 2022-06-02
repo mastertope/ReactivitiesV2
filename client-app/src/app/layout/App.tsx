@@ -1,29 +1,29 @@
 import React, { useEffect, useState } from 'react';
 import 'axios';
 import axios from 'axios';
-import { List } from 'semantic-ui-react';
-import { Activitiy } from '../models/activities';
+import { Container, List } from 'semantic-ui-react';
+import { Activity } from '../models/activities';
 import NavBar from './NavBar';
+import ActivityDashboard from '../../features/activities/dashboard/ActivityDashboard';
 
 function App() {
-  const [activities, setActivities] = useState<Activitiy[]>([]);
+  const [activities, setActivities] = useState<Activity[]>([]);
 
   useEffect(() => {
-    axios.get<Activitiy[]>('http://localhost:5000/api/activities').then(response => {
+    axios.get<Activity[]>('http://localhost:5000/api/activities').then(response => {
       setActivities(response.data);
-    })},[]);
+    })
+  }, []);
 
   return (
-    <div>
+    <>
       <NavBar />
-      <List>
-        {activities.map((activity) => (
-        <List.Item key={activity.id}>
-            {activity.title}
-        </List.Item>
-        ))}
-      </List>
-    </div>
+      <Container style={{marginTop: '7em'}}>
+        <List>
+          <ActivityDashboard activities={activities} />
+        </List>
+      </Container>
+    </>
   );
 }
 
