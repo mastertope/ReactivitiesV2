@@ -1,15 +1,15 @@
 import React from 'react';
 import { Button, Card, Image } from 'semantic-ui-react';
-import { StringLiteral } from 'typescript';
 import { Activity } from '../../../../app/models/activities';
 
 interface Props {
     activity: Activity,
     cancelSelectActivity: () => void,
     openForm: (id: string) => void;
+    submitting: boolean
 }
 
-export default function ActivityDetails({ activity, cancelSelectActivity, openForm }: Props) {
+export default function ActivityDetails({ activity, cancelSelectActivity, openForm, submitting }: Props) {
     return (
         <Card fluid>
             <Image src={`/assets/categoryImages/${activity.category}.jpg`} />
