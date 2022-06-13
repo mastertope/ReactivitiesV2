@@ -15,6 +15,7 @@ using MediatR;
 using Application.Activities;
 using AutoMapper;
 using API.Extensions;
+using FluentValidation.AspNetCore;
 // using API.Extensions;
 
 namespace API
@@ -31,7 +32,13 @@ namespace API
         public void ConfigureServices(IServiceCollection services)
         {
 
-            services.AddControllers();
+            services.AddControllers().AddFluentValidation(config => {
+                //Tells where our validators are coming from.
+                //As long as a controller is living inside the project/assembly, it will
+                //address all controllers within the project/assembly, given a single
+                //controller action is addressed.
+                config.RegisterValidatorsFromAssemblyContaining<Create>();
+            });
             services.AddApplicationServices(_config);
         }
 
