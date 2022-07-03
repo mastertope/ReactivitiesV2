@@ -23,6 +23,7 @@ namespace API.Extensions
             });
             //Tells MediatR where to find our handlers
             services.AddMediatR(typeof (List.Handler).Assembly);
+            //Tells AutoMapper where to find our handlers
             services.AddAutoMapper(typeof (MappingProfiles).Assembly);
 
             return services;
