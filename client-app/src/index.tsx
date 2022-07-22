@@ -15,7 +15,8 @@ export const history = createBrowserHistory();
 ReactDOM.render(
   <StoreContext.Provider value={store}>
     {/* Browser router provides the history component to App.tsx */}
-    {/* that's why we can use it in react hooks and components */}
+    {/* that's why we can use it in react hooks and components.*/}
+    {/* We use Router instead so we can use the history object elsewhere. */}
     <Router history={history}>
       <App />
     </Router>
